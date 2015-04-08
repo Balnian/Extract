@@ -122,7 +122,7 @@ public class Extract {
             writer.println("<html>");
             writer.println("<head><meta charset=\"utf-8\"></head>");
             writer.println("<body>");
-            writer.println("Hyperliens estraits du fichier <b>"+sourceName+"<b>");
+            writer.println("Hyperliens estraits du fichier <b>"+sourceName+"</b>");
             writer.println("<ul>");
 
             for (int i = 0; i < val.length; i++) {
