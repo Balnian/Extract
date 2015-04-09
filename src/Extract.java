@@ -46,7 +46,8 @@ public class Extract {
             System.exit(0);
         }
 
-        ShowTime(RipA(ReadFile(args[0])),args[1],args[0]);
+        ShowTime(GetA(ReadFile(args[0])),args[1],args[0]);
+        //ShowTime(RipA(ReadFile(args[0])),args[1],args[0]);
 
     }
 
@@ -88,6 +89,25 @@ public class Extract {
         return fichier;
     }
 
+    private static String GetA(String sourceTxt)
+    {
+        System.out.println("GetA Begin");
+        String carry="";
+        Integer pos=0;
+        String valuePairs="";
+        while ((pos =sourceTxt.indexOf("<a href=",(pos==0)?pos:pos+8)) != -1 )
+        {
+            carry += sourceTxt.substring(pos,sourceTxt.indexOf("</a>",pos)+4);
+            carry+=";";
+
+
+        }
+        System.out.println("GetA End");
+        return carry;
+
+    }
+
+    //Trop Overkill (rip l'url et le inner HTML puis les concataines sous le format: URL,innerHTML;URL2,innerHTML2;...
     private static  String RipA(String sourceTxt)
     {
         System.out.println("RipA Begin");
@@ -126,7 +146,7 @@ public class Extract {
             writer.println("<ul>");
 
             for (int i = 0; i < val.length; i++) {
-                writer.println("<li><a href=\""+ val[i].split(",")[0]+"\">"+ val[i].split(",")[1]+"</a></li>");
+                writer.println("<li>"+ val[i]+"</li>");
             }
 
 
